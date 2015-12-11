@@ -1,5 +1,5 @@
 {
-	"name": "SeekAWayOut/bgmrpcPhpClient",
+	"name": "seek-away-out/bgmrpc-php-client",
 	"description": "bgmrpc php client",
 	"license": "gpl",
 	"authors" : [ { "name": "Blue Ghost", "email": "SeekAWayOut@gmail.com" } ],
