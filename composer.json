@@ -3,8 +3,8 @@
 	"description": "bgmrpc php client",
 	"license": "gpl",
 	"authors" : [ { "name": "Blue Ghost", "email": "SeekAWayOut@gmail.com" } ],
-	"autoload": { "files": ["lib/bgmrpcClient.php"] },
-	"require": {
-		"textalk/websocket": "1.0.*"
+	"autoload": {
+		"files": ["lib/bgmrpcClient.php"],
+		"psr-4": {"WebSocket\\": "lib"}
 	}
 }

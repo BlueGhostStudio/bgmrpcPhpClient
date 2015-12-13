@@ -1,8 +1,10 @@
 <?php
+require ('wsc.php');
+
 function __rpcCall ($client, $r) {
-	$client->send ($r);
+	$client->sendData ($r);
 	while (1) {
-		$receiveData = json_decode ($client->receive ());
+		$receiveData = json_decode ($client->receiveData ());
 		if ($receiveData->type == 'return')
 			return $receiveData->values;
 	}
@@ -32,7 +34,7 @@ function toRequest ($args, $argn, $isJs=false) {
 function rpcCall () {
 	$args = func_get_args ();
 	$req = toRequest ($args, func_num_args ());
-	if (req == false)
+	if ($req == false)
 		return null;
 	else
 		return __rpcCall ($args[0], $req);
@@ -41,7 +43,7 @@ function rpcCall () {
 function rpcJCall () {
 	$args = func_get_args ();
 	$req = toRequest ($args, func_num_args (), true);
-	if (req == false)
+	if ($req == false)
 		return null;
 	else
 		return __rpcCall ($args[0], $req);
