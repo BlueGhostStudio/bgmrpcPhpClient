@@ -67,8 +67,10 @@ class WebsocketClient
 			$buffer = fread($this->_Socket, 512);
 			$data .= $buffer;
 		}
-		return $this->_hybi10Decode ($data)['payload'];
-		//return $this->_hybi10Decode ($data)->payload;
+		if (strlen ($data) > 0)
+                    return $this->_hybi10Decode ($data)['payload'];
+                else
+                    return '';
 	}
 
 	public function connect($host, $port, $path, $origin = false)
@@ -88,7 +90,7 @@ class WebsocketClient
 		{
 			$header.= "Sec-WebSocket-Origin: " . $origin . "\r\n";
 		}
-		$header.= "Sec-WebSocket-Version: 13\r\n";			
+		$header.= "Sec-WebSocket-Version: 13\r\n\r\n";
 		
 		$this->_Socket = fsockopen($host, $port, $errno, $errstr, 2);
 		socket_set_timeout($this->_Socket, 0, 10000);
